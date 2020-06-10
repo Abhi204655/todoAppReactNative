@@ -16,7 +16,7 @@ class App extends React.Component {
     const { height, width } = Dimensions.get('screen')
     return (
       <Provider store={store}>
-        <Image source={require('./assets/background.png')} style={styles.backgroundImage} />
+        <Image source={require('./assets/background.png')} style={{ ...styles.backgroundImage, width: '100%', height: '100%' }} />
         <TouchableWithoutFeedback style={{ width, height }} onPress={() => Keyboard.dismiss()} accessible={false}>
           <View style={styles.container}>
             <TodoInput />
@@ -39,9 +39,7 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight,
     position: 'absolute',
     top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0
+    left: 0
   }
 })
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, ActivityIndicator, TouchableOpacity, FlatList, SafeAreaView, Animated } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, TouchableOpacity, FlatList, SafeAreaView } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Divider, CheckBox } from 'react-native-elements';
@@ -11,17 +11,9 @@ import { getTodoes, markCompleted, deleteTodo } from '../redux/actions/todoActio
 
 class TodoItems extends Component {
     state = {
-        isSelected: false,
-        deleteAnim: new Animated.Value(1),
-        darkMode: true
+        isSelected: false
     }
 
-    deleteFade = () => {
-        Animated.timing(this.state.deleteAnim, {
-            toValue: 0,
-            duration: 1000
-        }).start()
-    }
 
     setSelection = (id) => {
         this.props.markCompleted(id);
@@ -37,7 +29,7 @@ class TodoItems extends Component {
     renderItem = (todo) => {
         const { textColor, primaryColor } = this.props;
         return (
-            <Animated.View key={todo.id} style={{ opacity: this.state.fadeAnim }}>
+            <View key={todo.id}>
                 <View style={styles.todo}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <CheckBox
@@ -53,7 +45,7 @@ class TodoItems extends Component {
                     </TouchableOpacity>
                 </View>
                 <Divider style={{ backgroundColor: primaryColor }} />
-            </Animated.View>
+            </View>
         )
     }
 

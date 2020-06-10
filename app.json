@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "todo-app",
-    "slug": "todo-app",
+    "name": "todoApp",
+    "slug": "todoapp",
     "platforms": [
       "ios",
       "android",
@@ -22,7 +22,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "com.techtypo.todoapp",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.techtypo.todoapp",
+      "versionCode": 1
+    },
+    "description": "A simple Todo App to store your daily todoes....",
+    "githubUrl": "https://github.com/Abhi204655/todoAppReactNative"
   }
 }
