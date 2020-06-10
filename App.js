@@ -1,19 +1,48 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, Dimensions, Image, StatusBar, Keyboard, TouchableWithoutFeedback, StyleSheet } from 'react-native';
+import TodoInput from './components/TodoInput';
+import TodoItems from './components/TodoItems';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import ChangeTheme from './components/ChangeTheme';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const { height, width } = Dimensions.get('screen')
+    return (
+      <Provider store={store}>
+        <Image source={require('./assets/background.png')} style={styles.backgroundImage} />
+        <TouchableWithoutFeedback style={{ width, height }} onPress={() => Keyboard.dismiss()} accessible={false}>
+          <View style={styles.container}>
+            <TodoInput />
+            <TodoItems />
+            <ChangeTheme />
+          </View>
+        </TouchableWithoutFeedback>
+      </Provider>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: StatusBar.currentHeight,
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'center'
   },
-});
+  backgroundImage: {
+    marginTop: StatusBar.currentHeight,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0
+  }
+})
+
+export default App;
